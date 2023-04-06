@@ -1,0 +1,45 @@
+<form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Nombre</label>
+    <input type="text" class="form-control" formControlName="nombre">
+    <small *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.dirty" class="alert alert"> Nombre invalido</small>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Apellido</label>
+    <input type="text" class="form-control" formControlName="apellido">
+    <small *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.dirty" class="alert alert"> Apellido
+      invalido</small>
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Correo Electronico</label>
+    <input type="email" class="form-control" formControlName="email">
+    <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="alert alert"> Email invalido</small>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">DNI</label>
+    <input type="text" class="form-control" formControlName="nroDocumento">
+    <small *ngIf="form.get('nroDocumento')?.invalid && form.get('nroDocumento')?.dirty" class="alert alert"> DNI invalido</small>
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Fecha de nacimiento</label>
+    <input type="date" class="form-control" placeholder="dd/mm/yyyy" formControlName="fechaNacimiento"
+      max="{{fechaActualStr}}">
+    <small *ngIf="form.get('fechaNacimiento')?.invalid && form.get('fechaNacimiento')?.touched" class="alert alert">
+      Fecha de nacimiento invalida (Debe ser +18) </small>
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Fecha de ingreso</label>
+    <input type="date" class="form-control" placeholder="dd/mm/yyyy" formControlName="fechaIngreso"
+      max="{{fechaActualStr}}">
+    <small *ngIf="form.get('fechaIngreso')?.invalid && form.get('fechaIngreso')?.touched" class="alert alert"> Fecha de
+      ingreso invalida</small>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="guardarEmpleado()">Agregar</button>
+  </div>
+  <small>{{errorMessage}}</small>
+  <small class="success">{{successMessage}}</small>
+</form>
+<br>
+<br>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tabla de empleados</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Turnos Rotativos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Sistema de gestion de empleados <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    
+    </div>
+  </nav>
+</header>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="col-sm-8">
+  <h2><b>Editar empleado</b></h2>
+</div>
+<div class="table-wrapper">
+  <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="nombre"
+        placeholder="Nombre previo: {{empleadoToUpdate.nombre}} ">
+      <small *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.dirty" class="alert alert"> Nombre
+        invalido</small>
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Apellido</label>
+      <input type="text" class="form-control" formControlName="apellido"
+        placeholder="Apellido previo: {{empleadoToUpdate.apellido}}">
+      <small *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.dirty" class="alert alert"> Apellido
+        invalido</small>
+    </div>
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Correo Electronico</label>
+      <input type="email" class="form-control" formControlName="email"
+        placeholder="Email previo: {{empleadoToUpdate.email}}">
+      <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="alert alert"> Email
+        invalido</small>
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">DNI</label>
+      <input type="text" class="form-control" formControlName="nroDocumento"
+        placeholder="DNI previo: {{empleadoToUpdate.nroDocumento}}">
+      <small *ngIf="form.get('nroDocumento')?.invalid && form.get('nroDocumento')?.dirty" class="alert alert"> Dni
+        invalido</small>
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Fecha de nacimiento</label>
+      <input type="date" class="form-control" formControlName="fechaNacimiento" max="{{fechaActualStr}}">
+      <small *ngIf="form.get('fechaNacimiento')?.invalid && form.get('fechaNacimiento')?.touched" class="alert alert">
+        Fecha de nacimiento invalida (Debe ser +18) </small>
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Fecha de ingreso</label>
+      <input type="date" class="form-control" formControlName="fechaIngreso" max="{{fechaActualStr}}">
+      <small *ngIf="form.get('fechaIngreso')?.invalid && form.get('fechaIngreso')?.touched" class="alert alert"> Fecha de ingreso invalida</small>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" href="http://localhost:4200" class="btn btn-success" [disabled]="!form.valid" (click)="actualizarEmpleado()">
+        Actualizar Empleado
+      </button>
+    </div>
+      <div class="col-12">
+      <button class="btn btn-primary">
+        <a href="{{localhost}}">Volver al inicio</a>
+      </button>
+    </div>
+    <small class="success">{{successMessage}}</small>
+    <small>{{errorMessage}}</small>
+  </form>
+</div>
+<br>
+<br>
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2024 Sistema empleados</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">TP</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Evaluativo</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Angular</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">+</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Java</a></li>
+    </ul>
+  </footer>
+</div>
+</html>

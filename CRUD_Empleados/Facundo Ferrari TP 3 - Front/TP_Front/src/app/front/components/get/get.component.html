@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tabla de empleados</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+</head>
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Turnos Rotativos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Sistema de gestion de empleados <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<br>
+<br>
+
+<body>
+  <div class="container-lg">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2><b>{{title}}</b></h2>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-info add-new" (click)="onClickAgregar()"><i class="fa fa-plus"></i>
+                Add New</button>
+            </div>
+          </div>
+        </div>
+        <app-add *ngIf="agregarNuevo"></app-add>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo Electronico</th>
+              <th>DNI</th>
+              <th>Fecha de nacimiento</th>
+              <th>Fecha de ingreso</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of listEmpleados">
+              <td>{{empleado.nombre}} </td>
+              <td>{{empleado.apellido}}</td>
+              <td>{{empleado.email}}</td>
+              <td>{{empleado.nroDocumento}}</td>
+              <td>{{empleado.fechaNacimiento| date:'dd/MM/yyyy'}}</td>
+              <td>{{empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <button class="btn btn-link btn-sm">
+                <a href= "{{localhost}}/editarEmpleado/{{empleado.id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+              </button>
+                <button class="btn btn-link btn-sm"  (click)=" borrarYrecargar(empleado.id) ">
+                <a class="delete" title="Delete" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>
+                </button> 
+      </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <small *ngIf="listEmpleados.length == 0">No hay empleados cargados</small>
+      </div>
+    </div>
+  </div>
+  <div class="filler"></div>
+</body>
+<app-delete [idSentByParent]="idToBorrar" (sendOutParent)="recibAlert($event)" *ngIf="elementoBorrar"></app-delete>
+
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2024 Sistema empleados</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">TP</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Evaluativo</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Angular</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">+</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Java</a></li>
+    </ul>
+  </footer>
+</div>
+</html>
