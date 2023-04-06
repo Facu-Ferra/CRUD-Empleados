@@ -5,7 +5,7 @@ A continuación se detalla de que forma realizar las request para acceder a las 
 
 ## Get All Empleados
 ```http
-  GET    http://localhost:8080/empleados
+  GET    http://localhost:8080/empleado
 ```
 | Descripción                |
 | :------------------------- | 
@@ -42,7 +42,7 @@ Ejemplo de la devolución:
 ## Get Empleado
 
 ```http
-  GET   http://localhost:8080/empleados/{id}
+  GET   http://localhost:8080/empleado/{id}
 ```
 
 | Parametro | Tipo     | Descripción                       |
@@ -69,7 +69,7 @@ Ejemplo de la devolución:
 ## Crear Empleado
 
 ```http
-  POST    http://localhost:8080/empleados
+  POST    http://localhost:8080/empleado
 ```
 
 | Descripción                       |
@@ -92,7 +92,7 @@ Ejemplo del Body:
 ## Eliminar Empleado
 
 ```http
-  Delete    http://localhost:8080/empleados/{id}
+  Delete    http://localhost:8080/empleado/{id}
 ```
 
 | Parametro | Tipo     | Descripción                       |
@@ -101,7 +101,7 @@ Ejemplo del Body:
 
 ## Get All Conceptos
 ```http
-  GET    http://localhost:8080/conceptos
+  GET    http://localhost:8080/concepto
 ```
 | Descripción                |
 | :------------------------- | 
@@ -129,6 +129,15 @@ Ejemplo de la devolución:
 ]
   
 ```
+
+## Update Empleado
+```http
+  PUT    http://localhost:8080/empleado/{{id}}
+```
+| Descripción                |
+| :------------------------- | 
+| Sobreescribe el empleado pasado por id |
+
 
 
 
